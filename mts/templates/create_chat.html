@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать чат</title>
+</head>
+<body>
+    <h1>Создать новый чат</h1>
+
+    <form method="post">
+        {% csrf_token %}  <!-- Обязательная защита от CSRF -->
+
+        <label for="title">Название чата:</label>
+        <input type="text" id="title" name="title" required>
+
+        <button type="submit">Создать чат</button>
+    </form>
+
+    <a href="{% url 'chat_list' %}">Вернуться к списку чатов</a>
+</body>
+</html>

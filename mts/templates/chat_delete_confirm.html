@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление чата</title>
+</head>
+<body>
+    <h1>Удалить чат «{{ chat.title }}»?</h1>
+    <p>Все сообщения в этом чате будут безвозвратно удалены.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Подтвердить удаление</button>
+        <a href="{% url 'chat_detail' chat.id %}">Отменить</a>
+    </form>
+</body>
+</html>

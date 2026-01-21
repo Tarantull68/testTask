@@ -1,0 +1,72 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Чат: {{ chat.title }}</title>
+</head>
+<body>
+    <h1>{{ chat.title }}</h1>
+
+
+    <div id="messages">
+        {% for message in messages %}
+            <div class="message">
+                <strong>Пользователь:</strong>
+                {{ message.text }}
+                <small>{{ message.created_at|date:"d.m.Y H:i" }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="text" rows="3" placeholder="Напишите сообщение..." required></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <a href="{% url 'chat_list' %}">Вернуться к списку чатов</a>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чат: {{ chat.title }}</title>
+</head>
+<body>
+    <h1>{{ chat.title }}</h1>
+
+    <!-- Текущее количество отображаемых сообщений -->
+    <p>Отображается {{ count }} последних сообщений</p>
+
+    <!-- Форма для изменения количества сообщений -->
+    <form method="get">
+        <label for="count">Показать сообщений:</label>
+        <input type="number" name="count" id="count" value="{{ count }}" min="1" max="100">
+        <button type="submit">Обновить</button>
+    </form>
+
+    <!-- Список сообщений -->
+    <div id="messages">
+        {% for message in messages %}
+            <div class="message">
+                <strong>Сообщение:</strong> {{ message.text }}
+                <small>{{ message.created_at|date:"H:i d.m.Y" }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Форма отправки нового сообщения -->
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="text" rows="3" placeholder="Напишите сообщение..." required></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <form method="post" action="{% url 'chat_delete' chat.id %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Удалить чат</button>
+    </form>
+
+</body>
+</html>
