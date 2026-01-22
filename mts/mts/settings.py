@@ -61,17 +61,58 @@ WSGI_APPLICATION = 'mts.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test_task',
+        'USER': 'postgres',
+        'PASSWORD': '1254',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    }
+}'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_task',  # замените на имя вашей БД
-        'USER': 'postgres',      # замените на имя пользователя
-        'PASSWORD': '1254',        # замените на пароль
-        'HOST': 'localhost',             # или IP-адрес сервера БД
-        'PORT': '5433',
+        'NAME': 'test_task',
+        'USER': 'postgres',
+        'PASSWORD': '1254',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module}:{lineno} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'mtsapp': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

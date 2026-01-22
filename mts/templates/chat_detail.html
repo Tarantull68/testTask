@@ -6,6 +6,11 @@
 <body>
     <h1>{{ chat.title }}</h1>
 
+    <form method="get" action="{% url 'chat_list' %}">
+    <button type="submit">Вернуться к списку чатов</button>
+    </form>
+
+
     <p>Отображается {{ count }} последних сообщений</p>
 
     <form method="get">

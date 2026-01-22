@@ -10,7 +10,6 @@ class Chat(models.Model):
 
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')  # если нужен пользователь
     text = models.TextField(max_length=5000, null=False)
     created_at = models.DateTimeField(default=timezone.now)
 
