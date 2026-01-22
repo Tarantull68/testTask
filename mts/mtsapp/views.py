@@ -11,28 +11,23 @@ def create_chat(request):
         title = request.POST.get('title')
         if title:
             Chat.objects.create(title=title)
-            return redirect('chat_list')  # перенаправляем на список чатов
-    # Если метод GET или ошибка — показываем форму снова
+            return redirect('chat_list')
     return render(request, 'create_chat.html')
 
-chats = Chat.objects.all()  # Должен возвращать все записи
-
+chats = Chat.objects.all()
 
 def chat_detail(request, chat_id):
     chat = get_object_or_404(Chat, id=chat_id)
-
-    # Получаем параметр count из GET-запроса (например, ?count=30)
     count = request.GET.get('count', 20)  # По умолчанию 20 сообщений
 
-    # Преобразуем в число и ограничиваем максимум 100
     try:
         count = int(count)
         if count > 100:
-            count = 100  # Максимум 100 сообщений
+            count = 100
         elif count < 1:
-            count = 1  # Минимум 1 сообщение
+            count = 1
     except ValueError:
-        count = 20  # Если count не число — устанавливаем 20
+        count = 20
 
     # Получаем последние N сообщений, отсортированные по времени (новые сверху)
     messages = chat.messages.order_by('-created_at')[:count]
@@ -41,14 +36,13 @@ def chat_detail(request, chat_id):
         text = request.POST.get('text')
         if text:
             Message.objects.create(chat=chat, text=text)
-            # Пересчитываем URL с текущим count для редиректа
             redirect_url = f'/chat/{chat_id}/?count={count}'
             return redirect(redirect_url)
 
     return render(request, 'chat_detail.html', {
         'chat': chat,
         'messages': messages,
-        'count': count  # Передаём count в шаблон для отображения
+        'count': count
     })
 
 
@@ -56,8 +50,8 @@ def chat_delete(request, chat_id):
     chat = get_object_or_404(Chat, id=chat_id)
 
     if request.method == 'POST':
-        chat.delete()  # Удаляет чат и все связанные сообщения (благодаря on_delete=models.CASCADE)
+        chat.delete()  # Удаляет чат и все связанные сообщения
         messages.success(request, 'Чат и все сообщения удалены!')
-        return redirect('chat_list')  # замените на ваш URL списка чатов
+        return redirect('chat_list')
 
     return render(request, 'chat_delete_confirm.html', {'chat': chat})

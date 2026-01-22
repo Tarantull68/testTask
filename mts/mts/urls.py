@@ -1,12 +1,3 @@
-'''from django.contrib import admin
-from django.urls import path
-from mtsapp.views import function
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path ('', function)
-]'''
-
 from django.urls import path
 from mtsapp import views
 

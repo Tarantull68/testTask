@@ -7,7 +7,7 @@
     <h1>Создать новый чат</h1>
 
     <form method="post">
-        {% csrf_token %}  <!-- Обязательная защита от CSRF -->
+        {% csrf_token %}
 
         <label for="title">Название чата:</label>
         <input type="text" id="title" name="title" required>

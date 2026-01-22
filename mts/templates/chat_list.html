@@ -1,24 +1,3 @@
-<!--<!DOCTYPE html>
-<html>
-<head>
-    <title>Список чатов</title>
-</head>
-<body>
-    <h1>Чаты</h1>
-
-    <a href="{% url 'create_chat' %}">
-        <button>Создать чат</button>
-    </a>
-
-    <ul>
-        {% for chat in chats %}
-            <li>{{ chat.title }} (создан: {{ chat.created_at }})</li>
-        {% endfor %}
-    </ul>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +6,8 @@
 <body>
     <h1>Чаты</h1>
 
-
-    <!-- Кнопка создания нового чата -->
     <a href="{% url 'create_chat' %}">Создать новый чат</a>
 
-    <!-- Список чатов -->
     <ul>
         {% for chat in chats %}
             <li>
