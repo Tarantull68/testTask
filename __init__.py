@@ -1,0 +1,1 @@
+from .mts import settings
