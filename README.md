@@ -4,11 +4,11 @@
 Как запустить:  
 Скачать zip-файл;  
 Открыть файл через Open;  
-Подключиться к БД: DataBase -> test_task@localhost -> Properties ->  user: postgres    password: 1254; (Автоматически не подключается, не знаю как это исправить)  
-В терминале прописать команды:
+Подключиться к БД: DataBase -> test_task@localhost -> Properties ->  user: postgres    password: 1254; (Автоматически не подключается, не знаю как это исправить)   
+В терминале прописать команды:  
 
-cd .\mts\
-docker-compose up -d
-docker-compose run web python manage.py migrate
+cd .\mts\  
+docker-compose up -d  
+docker-compose run web python manage.py migrate  
 
 Перейти по ссылке: http://localhost:8000/chats/ или с помощью Docker программы нажать на ссылку у web приложения.
