@@ -61,17 +61,6 @@ WSGI_APPLICATION = 'mts.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_task',
-        'USER': 'postgres',
-        'PASSWORD': '1254',
-        'HOST': 'localhost',
-        'PORT': '5433',
-    }
-}'''
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
